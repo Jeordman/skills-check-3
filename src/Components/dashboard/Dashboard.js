@@ -12,7 +12,7 @@ class Dashboard extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     axios
       .get("/api/houses")
       .then(res => {
@@ -22,8 +22,18 @@ class Dashboard extends Component {
       .catch(err => console.log("Error in dashboard", err));
   }
 
+
+  deleteHouse = id => {
+    axios
+      .delete(`/api/delete/${id}`)
+      .then(res => {
+        this.componentDidMount()
+      })
+      .catch(err => console.log("brkn delete", err));
+  };
+
   render() {
-      console.log('before destructure', this.state.houses)
+    console.log("before destructure", this.state.houses);
     //   let { houses } = this.state.houses
     //   console.log('houses in render',houses)
     return (
@@ -31,17 +41,16 @@ class Dashboard extends Component {
         <Link to={{ pathname: "/wizard" }}>
           <button>ADD A NEW PROPERTY</button>
         </Link>
-        
+
         <div className="mapped houses" key={0}>
           {this.state.houses.map((obj, index) => {
             return (
               <div key={index}>
-                <House obj={obj}/>
+                <House obj={obj} deleteHouse={this.deleteHouse} didMount={this.componentDidMount}/>
               </div>
             );
           })}
         </div>
-
       </div>
     );
   }

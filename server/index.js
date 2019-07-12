@@ -13,6 +13,7 @@ app.use(express.json());
 //app.get/push/etc go here
 app.get('/api/houses', ctrl.getHouses)
 app.post('/api/add', ctrl.addHouse)
+app.delete('/api/delete/:id', ctrl.deleteHouse)
 
 massive(CONNECTION_STRING)
   .then(db => {

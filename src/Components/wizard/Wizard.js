@@ -7,11 +7,11 @@ class Wizard extends Component {
     super();
 
     this.state = {
-      name: "",
+      property_name: "",
       address: "",
       city: "",
       state: "",
-      zipcode: ""
+      zip: ""
     };
   }
 
@@ -23,23 +23,24 @@ class Wizard extends Component {
 
   handleAddButton = () => {
     console.log(this.state)
-    const { name, address, city, state, zipcode } = this.state
-    console.log(name, address, city, state, zipcode)
-    axios.post("/api/add", { name, address, city, state, zipcode}).then(res => {
+    const { property_name, address, city, state, zip } = this.state
+    console.log(property_name, address, city, state, zip)
+    axios.post("/api/add", { property_name, address, city, state, zip}).then(res => {
+
     })
     this.setState({
-      name: "",
+      property_name: "",
       address: "",
       city: "",
       state: "",
-      zipcode: ""
+      zip: ""
     })
 
   }
   
 
   render() {
-    const { name, address, city, state, zipcode } = this.state;
+    const { property_name, address, city, state, zip } = this.state;
     return (
       <div>
         <h1>WIZARD</h1>
@@ -48,8 +49,8 @@ class Wizard extends Component {
         </Link>
 
         <input
-          name="name"
-          value={name}
+          name="property_name"
+          value={property_name}
           onChange={e => this.handleInputs(e)}
           placeholder="name"
         />
@@ -72,14 +73,14 @@ class Wizard extends Component {
           placeholder="State"
         />
         <input
-          name="zipcode"
-          value={zipcode}
+          name="zip"
+          value={zip}
           onChange={e => this.handleInputs(e)}
-          placeholder="Zipcode"
+          placeholder="Zip"
         />
         <Link to={{ pathname: "/" }}>
         <button onClick={this.handleAddButton} >ADD</button>
-
+        
         </Link>
       </div>
     );
