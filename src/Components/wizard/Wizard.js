@@ -11,8 +11,15 @@ class Wizard extends Component {
       address: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      image_url: "",
+      morgage: "",
+      rent: ""
     };
+  }
+
+  goBack = () => {
+    window.history.back()
   }
 
   handleInputs = e => {
@@ -26,7 +33,6 @@ class Wizard extends Component {
     const { property_name, address, city, state, zip } = this.state
     console.log(property_name, address, city, state, zip)
     axios.post("/api/add", { property_name, address, city, state, zip}).then(res => {
-
     })
     this.setState({
       property_name: "",
@@ -36,6 +42,17 @@ class Wizard extends Component {
       zip: ""
     })
 
+  }
+
+  handleNext = () => {
+    const { property_name, address, city, state, zip } = this.state
+    this.setState({
+      property_name: property_name,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip
+    })
   }
   
 
@@ -50,6 +67,7 @@ class Wizard extends Component {
 
         <input
           name="property_name"
+    
           value={property_name}
           onChange={e => this.handleInputs(e)}
           placeholder="name"
@@ -80,8 +98,12 @@ class Wizard extends Component {
         />
         <Link to={{ pathname: "/" }}>
         <button onClick={this.handleAddButton} >ADD</button>
-        
         </Link>
+        <Link to={{ pathname: '/step2'}}>
+          <button handleNext={this.handleNext}>Next</button>
+        </Link>
+
+        
       </div>
     );
   }
