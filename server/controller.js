@@ -3,12 +3,13 @@
 module.exports = {
     getHouses: async (req, res) => {
         const houses = await req.app.get('db').get_all_houses()
-        return res.sendStatus(200).send( houses )
+        console.log(houses)
+        return res.status(200).send( houses )
     },
 
     addHouse: async (req, res) => {
-        const { name, address, city, state, zipcode } = req.body
-        req.app.get('db').new_house([name, address, city, state, zipcode])
+        const { property_name, address, city, state, zip } = req.body
+        req.app.get('db').new_house([property_name, address, city, state, zip])
         return res.sendStatus(200)
     }
 }
