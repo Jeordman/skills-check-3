@@ -21,22 +21,21 @@ class Wizard extends Component {
     console.log(value);
   };
 
-  // handleAddButton() {
-  //   console.log(this.state)
-  //   const { name, address, city, state, zipcode } = this.state
-  //   console.log(name, address, city, state, zipcode)
-  //   axios.post("/api/add", { name, address, city, state, zipcode}).then(res => {
-  //     this.props.didMount()
-  //   })
-  //   this.setState({
-  //     name: "",
-  //     address: "",
-  //     city: "",
-  //     state: "",
-  //     zipcode: ""
-  //   })
+  handleAddButton = () => {
+    console.log(this.state)
+    const { name, address, city, state, zipcode } = this.state
+    console.log(name, address, city, state, zipcode)
+    axios.post("/api/add", { name, address, city, state, zipcode}).then(res => {
+    })
+    this.setState({
+      name: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: ""
+    })
 
-  // }
+  }
   
 
   render() {
@@ -78,7 +77,10 @@ class Wizard extends Component {
           onChange={e => this.handleInputs(e)}
           placeholder="Zipcode"
         />
-        <button >ADD</button>
+        <Link to={{ pathname: "/" }}>
+        <button onClick={this.handleAddButton} >ADD</button>
+
+        </Link>
       </div>
     );
   }
