@@ -9,10 +9,12 @@ import routes from "./routes";
 function App() {
   console.log(routes)
   return (
+    <div className='all'>
     <HashRouter>
         <Header />
        {routes}
     </HashRouter>
+    </div>
   );
 }
 

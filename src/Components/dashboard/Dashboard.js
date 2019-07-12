@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import House from "../house/House";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import './dashboard.css'
 
 class Dashboard extends Component {
   constructor() {
@@ -38,11 +39,14 @@ class Dashboard extends Component {
     //   console.log('houses in render',houses)
     return (
       <div>
-        <Link to={{ pathname: "/wizard" }}>
-          <button>ADD A NEW PROPERTY</button>
+        <header className='top-holder'>
+         Dashboard
+        <Link to={{ pathname: "/wizard" }}>         
+          <button className='add-button'>ADD A NEW PROPERTY</button>
         </Link>
+        </header>
 
-        <div className="mapped houses" key={0}>
+        <div className="mapped-houses" key={0}>
           {this.state.houses.map((obj, index) => {
             return (
               <div key={index}>

@@ -30,16 +30,19 @@ class Wizard extends Component {
 
   handleAddButton = () => {
     console.log(this.state)
-    const { property_name, address, city, state, zip } = this.state
-    console.log(property_name, address, city, state, zip)
-    axios.post("/api/add", { property_name, address, city, state, zip}).then(res => {
+    const { property_name, address, city, state, zip, image_url, morgage, rent } = this.state
+    console.log(property_name, address, city, state, zip, image_url, morgage, rent)
+    axios.post("/api/add", { property_name, address, city, state, zip, image_url, morgage, rent}).then(res => {
     })
     this.setState({
       property_name: "",
       address: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      image_url: "",
+      morgage: "",
+      rent: ""
     })
 
   }
